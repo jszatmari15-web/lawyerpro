@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="hu" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Professzionális online megjelenés ügyvédeknek | Szatmári János</title>
+    <meta name="description" content="Modern, igényes weboldal ügyvédi irodák számára kedvező egyszeri áron (45 000 Ft), akár 1 héten belül, 1 év domain regisztrációval.">
+    
+    <!-- Google Fonts: Playfair Display (tekintélyt parancsoló címsorokhoz) és Inter (tiszta olvashatóságért) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Egyedi Tailwind konfiguráció a fekete-narancssárga arculathoz illő színekkel és betűtípusokkal -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                    },
+                    colors: {
+                        dark: {
+                            700: '#27272a',
+                            800: '#18181b',
+                            900: '#121212',
+                            950: '#0a0a0a',
+                        },
+                        accent: {
+                            300: '#fdba74',
+                            400: '#fb923c',
+                            500: '#f97316',
+                            600: '#ea580c',
+                            700: '#c2410c',
+                        }
+                    },
+                    boxShadow: {
+                        'elegant': '0 10px 30px -10px rgba(0, 0, 0, 0.75)',
+                        'accent': '0 10px 25px -5px rgba(249, 115, 22, 0.35)',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Finom, egyedi görgetősáv és átmenetek sötét témához */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0a0a0a;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #27272a;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #f97316;
+        }
+        .accent-gradient-border {
+            position: relative;
+        }
+        .accent-gradient-border::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #ea580c, #fb923c, #ea580c);
+            border-top-left-radius: 0.75rem;
+            border-top-right-radius: 0.75rem;
+        }
+    </style>
+</head>
+<body class="bg-dark-950 text-zinc-200 font-sans antialiased selection:bg-accent-500 selection:text-white">
+
+    <!-- 1. NAVIGÁCIÓS SÁV -->
+    <header class="sticky top-0 z-50 bg-dark-950/95 backdrop-blur-md border-b border-zinc-800/90 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <!-- Diszkrét márkanév / logó -->
+                <a href="#" class="flex items-center space-x-3 group">
+                    <div class="w-10 h-10 rounded-lg bg-dark-800 flex items-center justify-center text-accent-500 border border-accent-500/40 shadow-sm group-hover:bg-accent-500 group-hover:text-dark-950 transition-colors">
+                        <!-- Földgömb és teljes kurzor ikon SVG -->
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M20.4 10.2A8.5 8.5 0 1 0 10.2 20.4"/>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M3.6 9h15.8M3.6 14.5h6.6"/>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M11 3a16 16 0 0 0 0 17M12 3a16 16 0 0 1 2.6 7"/>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M12.5 12.5l2.7 7.8 1.5-2.6 2.8 2.8 1.4-1.4-2.8-2.8 2.6-1.5-8.2-2.3z"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <span class="block font-serif text-lg sm:text-xl font-bold text-white tracking-tight leading-none">XORT</span>
+                        <span class="block text-xs font-medium text-accent-400 uppercase tracking-wider mt-1">Webfejlesztés Ügyvédi Irodáknak</span>
+                    </div>
+                </a>
+
+                <!-- Asztali navigációs menü -->
+                <nav class="hidden md:flex items-center space-x-8">
+                    <a href="#bemutatkozas" class="text-sm font-medium text-zinc-300 hover:text-accent-400 transition-colors">Bemutatkozás</a>
+                    <a href="#arazas" class="text-sm font-medium text-zinc-300 hover:text-accent-400 transition-colors">Árazás</a>
+                    <a href="#kapcsolat" class="inline-flex items-center justify-center px-5 py-2.5 text-sm font-semibold text-white bg-accent-500 hover:bg-accent-600 rounded-lg shadow-accent transition-all duration-200 hover:-translate-y-0.5">
+                        Kapcsolatfelvétel
+                    </a>
+                </nav>
+
+                <!-- Mobil menü gomb -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" type="button" class="p-2.5 rounded-lg text-zinc-300 hover:text-white hover:bg-dark-800 focus:outline-none focus:ring-2 focus:ring-accent-500" aria-label="Menü megnyitása">
+                        <svg id="menu-icon-open" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                        </svg>
+                        <svg id="menu-icon-close" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobil lenyíló menü -->
+        <div id="mobile-menu" class="hidden md:hidden bg-dark-900 border-b border-zinc-800 px-4 pt-2 pb-6 space-y-2 shadow-2xl">
+            <a href="#bemutatkozas" class="mobile-link block px-3 py-2.5 rounded-lg text-base font-medium text-zinc-200 hover:bg-dark-800 hover:text-accent-400">Bemutatkozás</a>
+            <a href="#arazas" class="mobile-link block px-3 py-2.5 rounded-lg text-base font-medium text-zinc-200 hover:bg-dark-800 hover:text-accent-400">Árazás (45 000 Ft)</a>
+            <div class="pt-2">
+                <a href="#kapcsolat" class="mobile-link block w-full text-center px-4 py-3 rounded-lg text-base font-semibold text-white bg-accent-500 hover:bg-accent-600 shadow-accent">
+                    Ajánlatkérés / Kapcsolat
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- 2. HERO SZEKCIÓ -->
+    
+<section class="relative min-h-[650px] lg:min-h-[750px] flex items-center text-white overflow-hidden border-b border-zinc-800/80">
+
+    <!-- Teljes méretű háttérkép -->
+    <img
+        src="https://phoenixwebsitedevelopers.com/wp-content/uploads/2023/09/outer-banks-web-development-hosting.jpg"
+        alt="Modern webfejlesztés és kódkörnyezet"
+        onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1920&q=85';"
+        class="absolute inset-0 w-full h-full object-cover object-center"
+    >
+
+    <!-- Sötét fedőréteg -->
+    <div class="absolute inset-0 bg-gradient-to-r from-dark-950/95 via-dark-950/80 to-dark-950/45"></div>
+
+    <!-- Finom narancssárga háttértextúra -->
+    <div
+        class="absolute inset-0 opacity-10 pointer-events-none"
+        style="background-image: radial-gradient(#f97316 1px, transparent 1px); background-size: 32px 32px;">
+    </div>
+
+    <!-- Tartalom -->
+    <div class="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 lg:py-32">
+
+        <div class="max-w-4xl space-y-7 sm:space-y-9">
+
+            <!-- Címke -->
+            <div class="inline-flex items-center space-x-2 px-4 py-2 rounded-full bg-dark-800/70 backdrop-blur-sm border border-accent-500/40 text-accent-400 text-xs sm:text-sm font-medium">
+                <span class="w-2 h-2 rounded-full bg-accent-500 animate-pulse"></span>
+                <span>Célzott szolgáltatás ügyvédek számára</span>
+            </div>
+
+            <!-- Főcím -->
+            <h1 class="font-serif text-4xl sm:text-5xl lg:text-7xl font-bold tracking-tight text-white leading-[1.15]">
+                Professzionális online megjelenés
+                <span class="text-accent-500 not-italic font-bold">
+                    ügyvédeknek
+                </span>
+            </h1>
+
+            <!-- Leírás -->
+            <p class="text-lg sm:text-xl lg:text-2xl text-zinc-200 font-light max-w-3xl leading-relaxed">
+                Legyen ügyvédi irodája első benyomása is meggyőző!
+                Modern, igényes weboldal kedvező áron, akár 1 héten belül.
+            </p>
+
+            <!-- Gombok -->
+            <div class="flex flex-col sm:flex-row items-start sm:items-center gap-4 pt-3">
+
+                <a
+                    href="#kapcsolat"
+                    class="w-full sm:w-auto inline-flex items-center justify-center px-8 py-4 text-base font-semibold text-white bg-accent-500 hover:bg-accent-600 rounded-xl shadow-accent transition-all duration-200 hover:-translate-y-0.5">
+                    <span>Kapcsolatfelvétel</span>
+                    <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+                    </svg>
+                </a>
+
+                <a
+                    href="#elonyok"
+                    class="w-full sm:w-auto inline-flex items-center justify-center px-8 py-4 text-base font-medium text-white bg-dark-800/70 hover:bg-dark-700/90 border border-zinc-600 hover:border-accent-500/60 rounded-xl backdrop-blur-sm transition-all duration-200">
+                    Miért érdemes weboldalt készíttetni?
+                </a>
+
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+    <!-- 3. SZEMÉLYES MEGSZÓLÍTÁS / BEMUTATKOZÁS SZEKCIÓ -->
+    <section id="bemutatkozas" class="py-16 sm:py-24 bg-dark-900 border-b border-zinc-800/80">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="bg-dark-800 rounded-2xl p-8 sm:p-12 border border-zinc-700/80 shadow-elegant relative">
+                <!-- Dekoratív jogi ikon -->
+                <div class="w-12 h-12 rounded-xl bg-accent-500/15 border border-accent-500/40 text-accent-400 flex items-center justify-center mb-6">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
+                    </svg>
+                </div>
+  <div class="space-y-7">
+
+                <div class="inline-flex items-center gap-2 text-accent-400 text-sm font-semibold uppercase tracking-widest">
+                    <span class="w-8 h-[2px] bg-accent-500"></span>
+                    Küldetésem, vízióm
+                </div>
+
+                <h2 class="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold leading-snug">
+                    Segítek abban, hogy az ügyfelek
+                    <span class="text-accent-500">Önre találjanak.</span>
+                </h2>
+
+                <p class="text-zinc-300 text-lg leading-relaxed">
+                    Hiszek abban, hogy a megfelelő jogi segítséghez mindenkinek
+                    könnyen hozzá kell férnie, az ügyvédeknek pedig lehetőséget
+                    kell biztosítani arra, hogy szolgáltatásaikat minél több
+                    potenciális ügyfél megismerhesse.
+                </p>
+
+                <p class="text-zinc-400 leading-relaxed">
+                    Célom, hogy modern, professzionális online megjelenést
+                    biztosítsak az ügyvédek számára, és segítsem őket abban,
+                    hogy könnyebben elérjék azokat az embereket, akiknek
+                    jogi segítségre van szükségük.
+                </p>
+
+                <p class="text-zinc-400 leading-relaxed">
+                    Munkám során a gyorsaságra, a hatékonyságra és az
+                    ügyfélközpontú hozzáállásra helyezem a hangsúlyt.
+                    Olyan weboldalakat készítek, amelyek bizalmat ébresztenek,
+                    bemutatják az ügyvédi szolgáltatásokat, és megkönnyítik
+                    a kapcsolatfelvételt.
+                </p>
+                </div>
+
+                <!-- 2. elem -->
+                <div class="group flex gap-5 mt-4 p-6 sm:p-7 rounded-2xl border border-zinc-800 bg-zinc-900/50 hover:border-accent-500/50 hover:bg-zinc-900 transition-all duration-300">
+
+                    <div class="flex-shrink-0 w-14 h-14 rounded-xl bg-orange-500/10 flex items-center justify-center text-accent-500 group-hover:bg-accent-500 group-hover:text-white transition-all">
+                        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h8m-8 4h5m-9 7l3-3h10a3 3 0 003-3V6a3 3 0 00-3-3H7a3 3 0 00-3 3v12z"/>
+                        </svg>
+                    </div>
+
+                    <div>
+                        <h3 class="text-xl font-bold text-white mb-2">Ügyfél és ügyvéd összekapcsolása</h3>
+                        <p class="text-zinc-400 leading-relaxed">
+                            Az online jelenlét segítségével könnyebbé teszem,
+                            hogy a jogi segítséget keresők megtalálják
+                            és közvetlenül elérjék az ügyvédeket.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- 3. elem -->
+                <div class="group flex gap-5 p-6 sm:p-7 rounded-2xl border border-zinc-800 bg-zinc-900/50 hover:border-accent-500/50 hover:bg-zinc-900 transition-all duration-300">
+
+                    <div class="flex-shrink-0 w-14 h-14 rounded-xl bg-orange-500/10 flex items-center justify-center text-accent-500 group-hover:bg-accent-500 group-hover:text-white transition-all">
+                        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 2m6-2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                        </svg>
+                    </div>
+
+                    <div>
+                        <h3 class="text-xl font-bold text-white mb-2">Gyors és hatékony munkavégzés</h3>
+                        <p class="text-zinc-400 leading-relaxed">
+                            Egyszerű, átlátható folyamatokkal és gyors
+                            kivitelezéssel dolgozok. Nálam az idő és
+                            a határidők valóban számítanak.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- 4. elem -->
+                <div class="group flex gap-5 p-6 sm:p-7 rounded-2xl border border-zinc-800 bg-zinc-900/50 hover:border-accent-500/50 hover:bg-zinc-900 transition-all duration-300">
+
+                    <div class="flex-shrink-0 w-14 h-14 rounded-xl bg-orange-500/10 flex items-center justify-center text-accent-500 group-hover:bg-accent-500 group-hover:text-white transition-all">
+                        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 21s8-4 8-11V5l-8-3-8 3v5c0 7 8 11 8 11z"/>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4"/>
+                        </svg>
+                    </div>
+
+                    <div>
+                        <h3 class="text-xl font-bold text-white mb-2">Bizalom és ügyfélközpontúság</h3>
+                        <p class="text-zinc-400 leading-relaxed">
+                            Minden projektemnél az egyedi igényeket,
+                            a minőségi megjelenést és a hosszú távon
+                            is hasznos online jelenlétet tartom szem előtt.
+                        </p>
+                    </div>
+                </div>
+               
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. KIEMELT ELŐNYÖK SZEKCIÓ -->
+   
+<section id="elonyok" class="py-16 sm:py-24 bg-dark-950">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+        <!-- Szekció címe -->
+        <div class="text-center max-w-3xl mx-auto mb-14 sm:mb-16">
+            <span class="text-xs font-bold uppercase tracking-widest text-accent-500 block mb-2">
+                Online jelenlét és hitelesség
+            </span>
+
+            <h2 class="font-serif text-3xl sm:text-4xl font-bold text-white mb-4">
+                Miért érdemes saját weboldallal rendelkeznie?
+            </h2>
+
+            <p class="text-zinc-400 text-base sm:text-lg">
+                A digitális világ térnyerésével a jogi szolgáltatást kereső ügyfelek többsége is elsőként az interneten tájékozódik. Egy igényes bemutatkozó oldal jelentős versenyelőnyt biztosít.
+            </p>
+        </div>
+
+        <!-- 4 előnykártya – 2 oszlop, 2 sor -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 items-stretch">
+
+            <!-- 1. Előny -->
+            <div class="h-full bg-dark-900 rounded-2xl p-7 sm:p-9 border border-zinc-800 shadow-elegant hover:border-accent-500/60 transition-all duration-300 hover:-translate-y-1">
+
+                <div class="flex items-center gap-3 mb-5">
+                    <span class="text-accent-500 text-2xl font-bold">✓</span>
+                    <h3 class="font-serif text-xl sm:text-2xl font-bold text-white">
+                        Minőségi, bizalomépítő megjelenés
+                    </h3>
+                </div>
+
+                <p class="text-zinc-400 leading-relaxed">
+                    Átlátható felépítés és professzionális arculat, amely segít az érdeklődők ügyféllé válásában és erősíti irodája tekintélyét.
+                </p>
+            </div>
+
+            <!-- 2. Előny -->
+            <div class="h-full bg-dark-900 rounded-2xl p-7 sm:p-9 border border-zinc-800 shadow-elegant hover:border-accent-500/60 transition-all duration-300 hover:-translate-y-1">
+
+                <div class="flex items-center gap-3 mb-5">
+                    <span class="text-accent-500 text-2xl font-bold">✓</span>
+                    <h3 class="font-serif text-xl sm:text-2xl font-bold text-white">
+                        Ügyfélkör növelése
+                    </h3>
+                </div>
+
+                <p class="text-zinc-400 leading-relaxed">
+                    Egy célzottan felépített weboldal és szakmai online jelenlét új érdeklődőket hozhat, és hosszú távon támogathatja ügyfélköre bővítését.
+                </p>
+            </div>
+
+            <!-- 3. Előny -->
+            <div class="h-full bg-dark-900 rounded-2xl p-7 sm:p-9 border border-zinc-800 shadow-elegant hover:border-accent-500/60 transition-all duration-300 hover:-translate-y-1">
+
+                <div class="flex items-center gap-3 mb-5">
+                    <span class="text-accent-500 text-2xl font-bold">✓</span>
+                    <h3 class="font-serif text-xl sm:text-2xl font-bold text-white">
+                        Mindig elérhető tájékoztatás
+                    </h3>
+                </div>
+
+                <p class="text-zinc-400 leading-relaxed">
+                    A leendő ügyfelek munkaidőn kívül, akár hétvégén is megismerhetik szakterületeit, szakmai hátterét és az iroda elérhetőségeit.
+                </p>
+            </div>
+
+            <!-- 4. Előny -->
+            <div class="h-full bg-dark-900 rounded-2xl p-7 sm:p-9 border border-zinc-800 shadow-elegant hover:border-accent-500/60 transition-all duration-300 hover:-translate-y-1">
+
+                <div class="flex items-center gap-3 mb-5">
+                    <span class="text-accent-500 text-2xl font-bold">✓</span>
+                    <h3 class="font-serif text-xl sm:text-2xl font-bold text-white">
+                        Egyszerűbb kapcsolatfelvétel
+                    </h3>
+                </div>
+
+                <p class="text-zinc-400 leading-relaxed">
+                    A kapcsolatfelvételi űrlapok, telefonszámok és e-mail-címek segítségével az érdeklődők gyorsan és kényelmesen elérhetik Önt, felesleges körök nélkül.
+                </p>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+    <!-- 5. ÁRAZÁS ÉS CSOMAGTARTALOM KIEMELÉSE -->
+    <section id="arazas" class="py-16 sm:py-24 bg-dark-900 border-t border-zinc-800/80">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-12">
+                <span class="text-xs font-bold uppercase tracking-widest text-accent-500 block mb-2">Átlátható feltételek</span>
+                <h2 class="font-serif text-3xl sm:text-4xl font-bold text-white">
+                    Egyszerű, rejtett költségektől mentes ajánlat
+                </h2>
+            </div>
+
+            <!-- Központi ajánlati kártya -->
+            <div class="bg-dark-800 text-white rounded-2xl shadow-2xl overflow-hidden border border-zinc-700/80 accent-gradient-border">
+                <div class="grid grid-cols-1 lg:grid-cols-12">
+                    
+                    <!-- Bal oldal: Ár és kiemelés -->
+                    <div class="lg:col-span-5 p-8 sm:p-10 bg-dark-950/80 flex flex-col justify-between border-b lg:border-b-0 lg:border-r border-zinc-800">
+                        <div>
+                            <span class="inline-block px-3 py-1 rounded-full bg-accent-500/15 border border-accent-500/30 text-accent-400 text-xs font-semibold tracking-wider uppercase mb-4">
+                                Minőségi kivitelezés
+                            </span>
+                            <p class="text-zinc-400 text-sm font-medium">Teljes ár:</p>
+                            <div class="my-2 flex items-baseline">
+                                <span class="font-serif text-4xl sm:text-5xl font-bold text-white tracking-tight">45 000 Ft</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Jobb oldal: Tételes lista a csomag tartalmáról -->
+                    <div class="lg:col-span-7 p-8 sm:p-10 flex flex-col justify-center">
+                        <h3 class="font-serif text-xl sm:text-2xl font-bold text-white mb-6">
+                            Mit tartalmaz a 45 000 Ft-os csomag?
+                        </h3>
+
+                        <ul class="space-y-4">
+                            <li class="flex items-start">
+                                <div class="w-6 h-6 rounded-full bg-accent-500/20 text-accent-400 flex items-center justify-center shrink-0 mt-0.5 mr-3.5">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <strong class="text-white font-semibold block">Teljes értékű weblapfejlesztés</strong>
+                                    <span class="text-sm text-zinc-400">Professzionális bemutatkozó weboldal készítése, domain összekötés.</span>
+                                </div>
+                            </li>
+
+                            <li class="flex items-start">
+                                <div class="w-6 h-6 rounded-full bg-accent-500/20 text-accent-400 flex items-center justify-center shrink-0 mt-0.5 mr-3.5">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <strong class="text-white font-semibold block">1 éves domain regisztráció díja</strong>
+                                    <span class="text-sm text-zinc-400">Segítek az ügyvédi irodájához illő saját webcím kiválasztásában.</span>
+                                </div>
+                            </li>
+
+                            <li class="flex items-start">
+                                <div class="w-6 h-6 rounded-full bg-accent-500/20 text-accent-400 flex items-center justify-center shrink-0 mt-0.5 mr-3.5">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <strong class="text-white font-semibold block">Szakterületek és elérhetőségek átlátható bemutatása</strong>
+                                    <span class="text-sm text-zinc-400">Személyes bemutatkozás fül, jogi szakterületek részletezése, irodai cím, elérhetőségek feltüntetése.</span>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. REFERENCIA / SABLON BEMUTATÓ SZEKCIÓ -->
+    <section id="bemutato" class="py-16 sm:py-24 bg-dark-950 border-t border-zinc-800/80">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center max-w-3xl mx-auto mb-10">
+            <span class="text-xs font-bold uppercase tracking-widest text-accent-500 block mb-2">Vizuális ízelítő</span>
+            <h2 class="font-serif text-3xl sm:text-4xl font-bold text-white mb-4">
+                Nézze meg, milyen lehet a saját weboldala!
+            </h2>
+            <p class="text-zinc-400 text-base sm:text-lg leading-relaxed">
+                A mellékelt HTML fájlt én készítettem fiktív adatokkal, sablon oldalként. Minőségben, stílusban hasonló oldalakat készítek az ügyfeleim számára is.
+            </p>
+        </div>
+
+        <!-- Kattintható felirat vízszintes vonal nélkül -->
+        <div class="flex justify-center">
+            <a href="#sablon-elonezet" onclick="openTemplateModal(event)" class="group inline-flex items-center gap-3 px-6 py-3.5 rounded-xl bg-[#121212] border border-zinc-800 hover:border-[#f97316] shadow-lg transition-all duration-300 hover:-translate-y-0.5 cursor-pointer">
+                <!-- Diszkrét narancssárga jelzőpont -->
+                <span class="w-2 h-2 rounded-full bg-[#f97316] group-hover:scale-125 transition-transform"></span>
+                
+                <!-- Kattintható szöveg -->
+                <span class="text-sm sm:text-base font-medium text-zinc-200 group-hover:text-white transition-colors">
+                    A sablon oldalt ide kattintva érheti el
+                </span>
+
+                <!-- Elegáns nyíl ikon -->
+                <svg class="w-4 h-4 text-[#f97316] transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+                </svg>
+            </a>
+        </div>
+    </div>
+</section>
+
+    <!-- 7. KAPCSOLATFELVÉTELI SZEKCIÓ -->
+    <section id="kapcsolat" class="py-16 sm:py-24 bg-dark-900 border-t border-zinc-800/80">
+    <div class="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-6">
+        
+        <div class="space-y-3">
+            <span class="text-xs font-bold uppercase tracking-widest text-accent-500 block">
+                Kezdjük el a közös munkát
+            </span>
+            <h2 class="font-serif text-3xl sm:text-4xl font-bold text-white leading-tight">
+                Vegye fel a kapcsolatot
+            </h2>
+            <p class="text-zinc-300 text-base sm:text-lg leading-relaxed">
+                Amennyiben felkeltettem érdeklődését, szívesen egyeztetek Önnel az elképzelésekről, és elkészítem az ügyvédi irodájához illő egyedi weboldalt.
+            </p>
+        </div>
+
+        <!-- Közvetlen e-mail kártya -->
+        <div class="p-6 rounded-2xl bg-dark-950 text-white border border-accent-500/40 shadow-lg space-y-4 text-left max-w-md mx-auto">
+            <div class="flex items-center space-x-3">
+                <div class="w-10 h-10 rounded-lg bg-accent-500/20 text-accent-400 flex items-center justify-center shrink-0">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                    </svg>
+                </div>
+                <div>
+                    <span class="block text-xs text-zinc-400 uppercase tracking-wider">e-mail elérhetőség</span>
+                    <a href="mailto:info@gaox.hu" class="text-lg sm:text-xl font-bold text-accent-400 hover:text-accent-300 transition-colors">
+                        info@gaox.hu
+                    </a>
+                </div>
+            </div>
+
+            <div class="pt-3 border-t border-zinc-800 flex items-center justify-between">
+                <span class="text-xs text-zinc-400">E-mail cím másolása egy kattintással:</span>
+                <button type="button" id="copy-email-btn" class="inline-flex items-center px-3 py-1.5 rounded-lg bg-dark-800 hover:bg-dark-700 text-xs font-medium text-white border border-zinc-700 transition-colors">
+                    <svg class="w-3.5 h-3.5 mr-1.5 text-accent-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+                    </svg>
+                    <span id="copy-email-text">Másolás</span>
+                </button>
+            </div>
+        </div>
+
+    </div>
+</section>
+    <!-- LÁBLÉC -->
+<footer class="bg-dark-950 text-zinc-400 py-6 border-t border-zinc-800/50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex flex-col sm:flex-row items-center justify-between text-xs text-zinc-500 gap-4 text-center sm:text-left">
+            <p>&copy; <span id="current-year"></span> XORT Minden jog fenntartva.</p>
+            <p>Elérhetőség: <a href="mailto:info@gaox.hu" class="text-zinc-300 hover:text-accent-400 underline">info@gaox.hu</a></p>
+        </div>
+    </div>
+</footer>
+    <!-- Letisztult JavaScript az interaktivitáshoz -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Aktuális év beállítása a láblécben
+            const yearSpan = document.getElementById('current-year');
+            if (yearSpan) {
+                yearSpan.textContent = new Date().getFullYear();
+            }
+
+            // Mobil menü nyitása/zárása
+            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const iconOpen = document.getElementById('menu-icon-open');
+            const iconClose = document.getElementById('menu-icon-close');
+            const mobileLinks = document.querySelectorAll('.mobile-link');
+
+            function toggleMobileMenu() {
+                const isHidden = mobileMenu.classList.contains('hidden');
+                if (isHidden) {
+                    mobileMenu.classList.remove('hidden');
+                    iconOpen.classList.add('hidden');
+                    iconClose.classList.remove('hidden');
+                } else {
+                    mobileMenu.classList.add('hidden');
+                    iconOpen.classList.remove('hidden');
+                    iconClose.classList.add('hidden');
+                }
+            }
+
+            if (mobileMenuBtn) {
+                mobileMenuBtn.addEventListener('click', toggleMobileMenu);
+            }
+
+            mobileLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    if (!mobileMenu.classList.contains('hidden')) {
+                        toggleMobileMenu();
+                    }
+                });
+            });
+
+            // E-mail cím másolása vágólapra (iFrame-barát execCommand megoldással)
+            const copyBtn = document.getElementById('copy-email-btn');
+            const copyText = document.getElementById('copy-email-text');
+
+            if (copyBtn) {
+                copyBtn.addEventListener('click', function () {
+                    const tempInput = document.createElement('input');
+                    tempInput.value = 'info@gaox.hu';
+                    document.body.appendChild(tempInput);
+                    tempInput.select();
+                    try {
+                        document.execCommand('copy');
+                        copyText.textContent = 'Másolva!';
+                        setTimeout(() => {
+                            copyText.textContent = 'Másolás';
+                        }, 2500);
+                    } catch (err) {
+                        copyText.textContent = 'info@gaox.hu';
+                    }
+                    document.body.removeChild(tempInput);
+                });
+            }
+
+            // Kapcsolatfelvételi űrlap kezelése (azonnali visszajelzés + mailto megnyitása)
+            const contactForm = document.getElementById('contact-form');
+            const formFeedback = document.getElementById('form-feedback');
+
+            if (contactForm) {
+                contactForm.addEventListener('submit', function (e) {
+                    e.preventDefault();
+
+                    const nev = document.getElementById('nev').value.trim();
+                    const iroda = document.getElementById('iroda').value.trim();
+                    const email = document.getElementById('email').value.trim();
+                    const telefon = document.getElementById('telefon').value.trim();
+                    const uzenet = document.getElementById('uzenet').value.trim();
+
+                    // Visszajelző üzenet megjelenítése
+                    formFeedback.classList.remove('hidden');
+                    formFeedback.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+
+                    // Mailto link összeállítása az info@gaox.hu címre
+                    const subject = encodeURIComponent(`Weboldalkészítés érdeklődés - ${iroda || nev}`);
+                    const bodyLines = [
+                        `Tisztelt Szatmári János!`,
+                        ``,
+                        `${uzenet}`,
+                        ``,
+                        `--- Kapcsolattartási adatok ---`,
+                        `Név: ${nev}`,
+                        iroda ? `Ügyvédi iroda: ${iroda}` : null,
+                        `E-mail: ${email}`,
+                        telefon ? `Telefonszám: ${telefon}` : null
+                    ].filter(Boolean).join('\n');
+
+                    const mailtoUrl = `mailto:info@gaox.hu?subject=${subject}&body=${encodeURIComponent(bodyLines)}`;
+                    window.location.href = mailtoUrl;
+                });
+            }
+        });
+
+        // Sablon bemutató fülváltó funkció
+        function switchPreviewTab(tabName) {
+            // Tartalmak elrejtése
+            document.querySelectorAll('.preview-content').forEach(el => {
+                el.classList.add('hidden');
+            });
+
+            // Fülek alaphelyzetbe állítása
+            document.querySelectorAll('.preview-tab').forEach(btn => {
+                btn.classList.remove('bg-accent-500', 'text-white', 'font-semibold');
+                btn.classList.add('text-zinc-400', 'font-medium');
+            });
+
+            // Kiválasztott tartalom és fül aktiválása
+            const activeContent = document.getElementById('content-' + tabName);
+            const activeTab = document.getElementById('tab-' + tabName);
+
+            if (activeContent) activeContent.classList.remove('hidden');
+            if (activeTab) {
+                activeTab.classList.remove('text-zinc-400', 'font-medium');
+                activeTab.classList.add('bg-accent-500', 'text-white', 'font-semibold');
+            }
+        }
+    </script>
+</body>
+</html>
